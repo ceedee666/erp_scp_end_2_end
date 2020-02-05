@@ -52,7 +52,10 @@ Nevertheless, a possible solution for each of the exercises is available as part
 
 ## Open Issues
 
-1. Value help for BP, product and status are missing. [Related Documentation](https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/1809.000/en-US/38126a6ef7cc4a02b8ffc812b5c11b38.html)    
+1. Value help for BP, product and status are missing. [Related Documentation](https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/1809.000/en-US/38126a6ef7cc4a02b8ffc812b5c11b38.html).
+1. Solutions to the exercises.
+1. Tags to access the solutions to the different exercises.
+1. The whole SCP part is missing.
 
 ## Technologies & Frameworks
 
