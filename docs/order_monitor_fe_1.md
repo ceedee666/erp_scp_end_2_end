@@ -7,35 +7,54 @@ the Fiori Elements application based on this OData service.
 
 This chapter requires two things:
 
-- a SAP Cloud Platform account trial account
+- a SAP Cloud Platform trial account
 - a connection between the SAP Cloud Platform and the SAP NetWeaver AS ABAP.
 
-For the SAP Cloud Platform a free trial is available [here](https://www.sap.com/cmp/td/sap-cloud-platform-trial.html).
+### SAP Cloud Platform Trial Account
 
-In order to create a connection between the SAP Cloud Platform and the SAP NetWeaver AS ABAP open the SAP
-WebIDE and open **Tools -> Create Data Source**.
+SAP offers a free trial of the SAP Cloud Platform. You can register for this trial [here](https://www.sap.com/cmp/td/sap-cloud-platform-trial.html).
+There is a [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) available c2wshowingthat shows the neccessary steps to register
+for the trail account. Furthermore, the [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) also  
+shows how to navigate the trail account and where to find certain information. 
 
-<img src="../img/webide_datasource_10.png" width="30%">
+Note, that teh SAP Cloud Platform trail account has certain limitations. These limitations are described 
+[here](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/LATEST/en-US/046f127f2a614438b616ccfc575fdb16.html). 
+Especially the section trial life cycle is important. It describes after which time a trial account is deleted (including all its content).
 
-In the next screen enter following data:
+### Connecting the SAP Cloud Platform to the SAP NetWeaver AS ABAP
 
-- Section **Neo Environment Connection**
+In order to create a connection between the SAP Cloud Platform and the SAP NetWeaver AS ABAP a destination needs
+to be created in the SAP Cloud Platform cockpit. To create a desitionation navigate to the trial sub account and open 
+**Connectivity -> Destionations**.
 
-  - Username of the SAP Cloud Platform trial account
-  - Password of the SAP Cloud Platform trial account
+<img src="../img/cockpit_destination_10.png" width="30%">
 
-- Section **Destination Details**
+In this view click on **New Destionation**. Enter the following data for the destination:
 
-  - WebIDEUsage: Gateway
-  - Proxy Type: Internet
-  - URL: the IP address of the SAP NetWeaver AS ABAP including the HTTP port
-  - Authentication: Basic Authentication
-  - Username: The username of the SAP NetWeaver AS ABAP. If this is the developer trial of SAP Netweaver the username is DEVELOPER
-  - Password: The password of the user.
+- Name: The name for this destination, e.g. NPL
+- Type: HTTP
+- Description: A free text description of the destionation
+- URL: the IP address of the SAP NetWeaver AS ABAP including the HTTP port (http://<ip-address>:8000)
+- Proxy Type: Internet
+- Authentication: Basic Authentication
+- Username: The username of the SAP NetWeaver AS ABAP. If this is the developer trial of SAP Netweaver the username is DEVELOPER
+- Password: The password of the user.
+
+Furthermore, the following properties need to be added to the destionation. Note, not all properties are available in the 
+dropdown list. If a property is missing simply enter the propert manually. 
+
+|Property      | Value       |
+|--------------|-------------|
+|WebIDEEnabled | true |
+|WebIDESystem  | The system ID of the SAP NetWeaver AS ABAP. This is NPL for the SAP NetWeaver developer trial. |
+|WebIDEUsage   | odata_abap |
+|sap-platform  | ABAP |
+|sap-client    | The client number of the SAP NetWeaver AS ABAP. This is 001 the SAP NetWeaver deverloper trial. |
+|HTML5.DynamicDestination | true|
 
 Click finish to create the destination.
 
-<img src="../img/webide_datasource_20.png" width="50%">
+<img src="../img/cockpit_destination_20.png" width="50%">
 
 ## Create the Sales Order Monitor
 

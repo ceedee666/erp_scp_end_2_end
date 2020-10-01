@@ -3,7 +3,12 @@
 The virtual data model of the Order Monitor is defined using different Core Data Service (CDS) views.
 Before building the virtual data model of the Order Monitor CDS is explored in some more detail.
 
-## Introduction to CDS
+## Introduction to ABAP CDS
+
+SAP created different variants of Code Data Services (CDS) for different development scenarios. In particular 
+there are the ABAP Code Data Service and the Core Data Services of the Cloud Application Programming Model (https://cap.cloud.sap/docs/).
+The variants a similar but differ with respect to the supported features. The discussion in this document focuses on the ABAP 
+variant of Core Data Service. 
 
 In the ABAP documentation Core Data Service (CDS) is defined as follows
 > CDS introduce a common set of domain-specific languages (DSL) and services for defining and consuming semantically rich data models.
@@ -16,7 +21,8 @@ What does semantically rich data models mean in this context? Basically, CDS tri
 In a system like SAP ERP, that has grown over several decades it is often the case that names of database
 table and fields are quite cryptic. The naming often uses abbreviations of special terms that are not
 easily understandable. Furthermore, the relation of different database tables
-to each other is often unclear and not well documented. An example of such cryptic table naming is that table 'BUT000'. This table contains the main part of the business partner data in SAP ERP and CRM. Without additional information
+to each other is often unclear and not well documented. An example of such cryptic table naming is that table 'BUT000'. 
+This table contains the main part of the business partner data in SAP ERP and CRM. Without additional information
 it is not clear
 
 - Which data this table contains
