@@ -57,5 +57,5 @@ SQL Console in ABAP in Eclipse. Try to answer the following questions:
 
 ## Navigation
 
-- Next chapter: [Introduction to CDS](docs/cds_intro.md)
-- Previous chapter: [Exploring the EPM](../docs/exploring_epm.md)
+- Next chapter: [Introduction to CDS](../docs/cds_intro.md)
+- Previous chapter: [Scenario Overview](../docs/overview.md)
