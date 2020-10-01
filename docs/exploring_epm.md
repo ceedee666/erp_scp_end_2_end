@@ -34,15 +34,17 @@ Using the EPM data generator the sample data for the following business objects 
 ## Exercise 1
 
 The goal of the first exercise is to get familiar with the EPM model and the related processes.
-To do this either execute the application **S_EPM_UX_BP** (e.g. in ABAP in Eclipse). Alternatively
-the application can be started using the following URL (http://vhcalnplci.dummy.nodomain:8000/sap/bc/webdynpro/sap/s_epm_ux_b). Using the application try to answer the following questions:
+To do this either execute the Web Dynpro application **S_EPM_UX_BP** (e.g. in ABAP in Eclipse). Alternatively
+the application can be started using the following URL (http://vhcalnplci.dummy.nodomain:8000/sap/bc/webdynpro/sap/s_epm_ux_b). Note, that it might be necessary
+to add the IP address of your NetWeaver system to the hosts file in order to beeing able to access the mentioned URL. Using the application try to answer the following questions:
 
 - Which sales orders are related to a given business partner?
 - Which products where ordered in this sales order?
 - What are the properties of the ordered products?
 
-> If the tutorial is executed on a ABAP Netwever Development System (NLP) is is important that the domain
-> vhcalnplci.dummy.nodomain is mapped to the correct IP address in the hosts file.
+> If the tutorial is executed on a ABAP Netwever Development System (NPL) is is important that the domain
+> vhcalnplci.dummy.nodomain is mapped to the correct IP address in the hosts file. How this is done depends
+> on the used operating system. On most *nix based system the hosts file is located in `/etc/hosts`.
 
 ## Exercise 2
 
