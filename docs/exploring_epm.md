@@ -34,7 +34,8 @@ Using the EPM data generator the sample data for the following business objects 
 ## Exercise 1
 
 The goal of the first exercise is to get familiar with the EPM model and the related processes.
-To do this either execute the Web Dynpro application **S_EPM_UX_BP** (e.g. in ABAP in Eclipse). Alternatively
+To do this you first need to generate sample data for the EPM business objects using the EPM data generator.
+Next execute either the Web Dynpro application **S_EPM_UX_BP** (e.g. in ABAP in Eclipse). Alternatively
 the application can be started using the following URL (http://vhcalnplci.dummy.nodomain:8000/sap/bc/webdynpro/sap/s_epm_ux_b). Note, that it might be necessary
 to add the IP address of your NetWeaver system to the hosts file in order to beeing able to access the mentioned URL. Using the application try to answer the following questions:
 
@@ -47,11 +48,9 @@ to add the IP address of your NetWeaver system to the hosts file in order to bee
 > on the used operating system. On most *nix based system the hosts file is located in `/etc/hosts`.
 
 ## Exercise 2
-
-The exercise consist of two parts:
-
-- Generate sample data for the EPM business objects using the EPM data generator.
-- Analyse the database tables in the package `S_NWDEMO_MODEL_DDIC`. Try to answer the following questions:
+The goal of the next exercise is to familiarize yourself with the EPM data model. To do this
+analyse the database tables in the package `S_NWDEMO_MODEL_DDIC` unsing the Data Preview and the
+SQL Console in ABAP in Eclipse. Try to answer the following questions:
   - Which tables are related to which business objects?
   - How are the tables related to each other?
   - Try to find all the data related to one of the purchase orders.
