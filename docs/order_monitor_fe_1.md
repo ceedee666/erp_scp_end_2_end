@@ -90,35 +90,50 @@ minutes. Once the creation is finished the status of the Dev Space changes to **
 
 <img src="../img/business_app_studio_20.png" width="60%">
 
+Note, that the Dev Spaces are shut down if they ar not in use. Therefore, it might be necessary to
+restart an existing Dev Space using the play button before being able to access it.
+
 ### Creating an App using a Template
 
 The first step is to create an initial version of the Sales Order Monitor using one
-of the template offered by the SAP WebIDE. To select a template open the SAP WebIDE and
-click on **New Project from Template**. This opens a wizard that guides
-the user through the creation of the app. On the first screen the template
-needs to be selected. For this example the **List Report Application** template is used.
-![Selecting a Project Template](../img/webide_template_app_10.png)
+of the template offered by the SAP Business Application Studio. To select a template
+open the SAP Business Application Studio and
+click on **Create project from template** on the Welcome page. This opens a wizard that guides
+the user through the creation of the app.
 
+![Selecting a Project Template](../img/business_app_studio_30.png)
+
+On the first screen of the wizard specify where to create the project. For now the default value is fine.
+Select the **SAP Fiori elements application** template and click on **next**.
+On the following screen select **List Report Object Page** as the application type and click on **next**.
 On the screen **Basic Information** of the wizard the project name and the name of the created application needs to be provided.
 In the example an application named Purchase Order Monitor is created.
 
-<img src="../img/webide_template_app_20.png" width="50%">
+<img src="../img/business_app_studio_50.png" width="60%">
 
-On the screen **Data Connection** the OData service, which is used as a basis for the application can be selected. The selection of
+On the screen **Datasource and Service Selection** screen the OData service,
+which is used as a basis for the application, can be selected. The selection of
 the OData service consists of three steps:
 
-1. Chose the source of the service (e.g. Service Catalog, Service URL or the SAP API Business Hub)
-1. If Service Catalog is selected as a source, the source system needs to be selected as well. In the example the source system is the destination created on of the previous steps.
-1. Once the destination has been selected, all the services available at this destination are listed. In the example the OData service created using RDS exposure is chosen.
+1. Select the source of the service (e.g. Connect to SAP System)
+1. If Connect to SAP System is selected as a source, the source system needs to be selected as well.
+In the example the source system is the destination created in one of the previous steps.
+1. Once the destination has been selected, all the services available at this destination are listed.
+In the example the OData service created using RDS exposure is chosen.
 
-<img src="../img/webide_template_app_30.png" width="50%">
+<img src="../img/business_app_studio_60.png" width="60%">
 
-The **Template Customization** screen allows to adjust the template to the requirements and service at hand.
-In the case of the List Report Application the OData collection, that will be the entry to the application, as well as the navigation property need to be chosen.
-In the example the `PurchaseOrderHeaders` are used as the OData collection and `toItems` as the OData navigation. The OData sub navigation field should for
-this example not be filled.
+The **Entity Selection** screen allows to adjust the template to the requirements and service at hand.
+In the case of the List Report Application the OData collection, that will be the entry to the application,
+as well as the navigation entity needs to be chosen.
+In the example the `PurchaseOrderHeaders` are used as the OData collection and `toItems` as the OData navigation.
 
-<img src="../img/webide_template_app_40.png" width="50%">
+<img src="../img/business_app_studio_70.png" width="60%">
+
+On the **Projects Attributes** screen the main properties of the application can be configured. This
+includes the module name, the title and the description of the application.
+
+<img src="../img/business_app_studio_80.png" width="60%">
 
 Finally, clicking on finish generates the application.
 
@@ -127,7 +142,7 @@ Finally, clicking on finish generates the application.
 Once the wizard is finished, the generated application, in the example the Purchase Order Monitor can already be tested. It is not fit for production yet. Nevertheless,
 testing in the current state shows, what functionality is already available in Fiori Elements.
 
-The following screenshot shows the generated project in the SAP WebIDE.
+The following screenshot shows the generated project in the SAP Business Application Studio.
 
 <img src="../img/webide_template_app_50.png" width="30%">
 
