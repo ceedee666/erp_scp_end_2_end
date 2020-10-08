@@ -13,35 +13,35 @@ This chapter requires two things:
 ### SAP Cloud Platform Trial Account
 
 SAP offers a free trial of the SAP Cloud Platform. You can register for this trial [here](https://www.sap.com/cmp/td/sap-cloud-platform-trial.html).
-There is a [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) available c2wshowingthat shows the neccessary steps to register
+There is a [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) available showing that shows the necessary steps to register
 for the trail account. Furthermore, the [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) also  
-shows how to navigate the trail account and where to find certain information. 
+shows how to navigate the trail account and where to find certain information.
 
-Note, that teh SAP Cloud Platform trail account has certain limitations. These limitations are described 
-[here](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/LATEST/en-US/046f127f2a614438b616ccfc575fdb16.html). 
+Note, that teh SAP Cloud Platform trail account has certain limitations. These limitations are described
+[here](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/LATEST/en-US/046f127f2a614438b616ccfc575fdb16.html).
 Especially the section trial life cycle is important. It describes after which time a trial account is deleted (including all its content).
 
 ### Connecting the SAP Cloud Platform to the SAP NetWeaver AS ABAP
 
 In order to create a connection between the SAP Cloud Platform and the SAP NetWeaver AS ABAP a destination needs
-to be created in the SAP Cloud Platform cockpit. To create a desitionation navigate to the trial sub account and open 
-**Connectivity -> Destionations**.
+to be created in the SAP Cloud Platform cockpit. To create a destination navigate to the trial sub account and open
+**Connectivity -> Destinations**.
 
-<img src="../img/cockpit_destination_10.png" width="30%">
+<img src="../img/cockpit_destination_10.png" width="60%">
 
-In this view click on **New Destionation**. Enter the following data for the destination:
+In this view click on **New Destination**. Enter the following data for the destination:
 
 - Name: The name for this destination, e.g. NPL
 - Type: HTTP
-- Description: A free text description of the destionation
+- Description: A free text description of the destination
 - URL: the IP address of the SAP NetWeaver AS ABAP including the HTTP port (http://<ip-address>:8000)
 - Proxy Type: Internet
 - Authentication: Basic Authentication
 - Username: The username of the SAP NetWeaver AS ABAP. If this is the developer trial of SAP Netweaver the username is DEVELOPER
 - Password: The password of the user.
 
-Furthermore, the following properties need to be added to the destionation. Note, not all properties are available in the 
-dropdown list. If a property is missing simply enter the propert manually. 
+Furthermore, the following properties need to be added to the destination. Note, not all properties are available in the
+dropdown list. If a property is missing simply enter the property manually.
 
 |Property      | Value       |
 |--------------|-------------|
@@ -54,7 +54,7 @@ dropdown list. If a property is missing simply enter the propert manually.
 
 Click finish to create the destination.
 
-<img src="../img/cockpit_destination_20.png" width="50%">
+<img src="../img/cockpit_destination_20.png" width="60%">
 
 ## Create the Sales Order Monitor
 
@@ -88,7 +88,7 @@ the OData service consists of three steps:
 <img src="../img/webide_template_app_30.png" width="50%">
 
 The **Template Customization** screen allows to adjust the template to the requirements and service at hand.
-In the case of the List Report Application the OData collection, that will be the entry to the application, as well as the navigation property need to be choosen.
+In the case of the List Report Application the OData collection, that will be the entry to the application, as well as the navigation property need to be chosen.
 In the example the `PurchaseOrderHeaders` are used as the OData collection and `toItems` as the OData navigation. The OData sub navigation field should for
 this example not be filled.
 
@@ -101,7 +101,7 @@ Finally, clicking on finish generates the application.
 Once the wizard is finished, the generated application, in the example the Purchase Order Monitor can already be tested. It is not fit for production yet. Nevertheless,
 testing in the current state shows, what functionality is already available in Fiori Elements.
 
-The following screenshot shows the generated project in the SAP WebIDE. 
+The following screenshot shows the generated project in the SAP WebIDE.
 
 <img src="../img/webide_template_app_50.png" width="30%">
 
