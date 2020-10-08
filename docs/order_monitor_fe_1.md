@@ -139,29 +139,38 @@ Finally, clicking on finish generates the application.
 
 ### Running the App in the Fiori Launchpad Sandbox
 
-Once the wizard is finished, the generated application, in the example the Purchase Order Monitor can already be tested. It is not fit for production yet. Nevertheless,
+Once the wizard is finished, the generated application, in the example the Purchase Order Monitor
+can already be tested. It is not fit for production yet. Nevertheless,
 testing in the current state shows, what functionality is already available in Fiori Elements.
 
 The following screenshot shows the generated project in the SAP Business Application Studio.
 
-<img src="../img/webide_template_app_50.png" width="30%">
+![Generated Project](../img/business_app_studio_90.png)
 
-The generated application can be run by:
+The generated application can be run using different approaches:
 
-1. Clicking on the project name
-1. Clicking on the run button.
+1. By executing `npm run start` in the terminal
+1. By right clicking on start in the **NPM Scripts** section and selecting **Run**
+1. By executing one of the generated run configurations
 
-This opens a pop up in which the test environment has to be selected. As the Purchase Order Monitor in the example should be run using the
-real data from the OData service the option **flpSandbox.html** was selected. This option opens an example version of the
-Fiori launchpad including the selected Fiori Elements application.
+<img src="../img/business_app_studio_120.png" width="60%">
 
-<img src="../img/webide_template_app_60.png" width="30%">
+Using either of these options results in a pop up with one button **Open in new tab**. Clicking this button
+opens a new browser tab showing a folder structure similar to the one in the following image.
 
-The Purchase Order Monitor is started by selecting the tile in the Fiori launchpad. When the Purchase Order Monitor starts not much is to see. There are
+<img src="../img/business_app_studio_110.png" width="60%">
+
+Opening the **flpSandbox.html** file in the test folder starts an sandbox version of the
+Fiori launchpad including the Fiori Elements application that was just created.
+
+<img src="../img/template_app_60.png" width="30%">
+
+The Purchase Order Monitor is started by selecting the corresponding tile in the Fiori launchpad.
+When the Purchase Order Monitor starts not much is to see. There are
 a few navigation links but no content. However, it is already possible to click on the **Go** button. This invokes the underlying
-Odata service. As a result the lower part of the screen changes. However, there is still not much to see.
+OData service. As a result the lower part of the screen changes. However, there is still not much to see.
 
-<img src="../img/webide_template_app_70.png" width="50%">
+<img src="../img/template_app_70.png" width="50%">
 
 The reason is, that so far no UI annotations have been provided. So the Fiori Elements template has no information which
 data from the OData service should be shown on the screen and how. However, it is possible to partially configure
@@ -169,7 +178,7 @@ this in the running application through the build in personalization features.
 
 Clicking on the **Settings** icon open the configuration dialog shown in the following screenshot.
 
-<img src="../img/webide_template_app_80.png" width="50%">
+<img src="../img/template_app_80.png" width="50%">
 
 Selecting, for example, the purchase order ID, the total amount and the overall status results in the following layout. It is obvious, that
 the sales order data from the EPM is displayed in the Sales Order Monitor.
@@ -177,7 +186,7 @@ the sales order data from the EPM is displayed in the Sales Order Monitor.
 Furthermore, the total gross amount of the sales order is already displayed with the right currency code next to it. This is due to the
 `@Semantics.amount.currencyCode` annotation on the level of the basic interface view (c.f. chapter [The Virtual Data Model of the Sales Order Monitor](../docs/order_monitor_vdm.md)).
 
-<img src="../img/webide_template_app_90.png" width="50%">
+<img src="../img/template_app_90.png" width="50%">
 
 ### Exercise 1
 
@@ -518,7 +527,6 @@ Using the `@Metadata.layer` annotation a meta data extension file can be assigne
 - `#INDUSTRY`
 - `#PARTNER`
 - `#CUSTOMER`.
-
 
 ## Navigation
 
