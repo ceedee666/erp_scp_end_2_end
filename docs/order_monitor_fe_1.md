@@ -12,14 +12,19 @@ This chapter requires two things:
 
 ### SAP Cloud Platform Trial Account
 
-SAP offers a free trial of the SAP Cloud Platform. You can register for this trial [here](https://www.sap.com/cmp/td/sap-cloud-platform-trial.html).
-There is a [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) available showing that shows the necessary steps to register
-for the trail account. Furthermore, the [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) also  
+SAP offers a free trial of the SAP Cloud Platform. You can register for this trial
+[here](https://www.sap.com/cmp/td/sap-cloud-platform-trial.html).
+There is a [tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html)
+available showing that shows the necessary steps to register
+for the trail account. Furthermore, the
+[tutorial](https://developers.sap.com/tutorials/hcp-create-trial-account.html) also  
 shows how to navigate the trail account and where to find certain information.
 
 Note, that teh SAP Cloud Platform trail account has certain limitations. These limitations are described
 [here](https://help.sap.com/viewer/3504ec5ef16548778610c7e89cc0eac3/LATEST/en-US/046f127f2a614438b616ccfc575fdb16.html).
-Especially the section trial life cycle is important. It describes after which time a trial account is deleted (including all its content).
+Especially the section trial life cycle is important. It describes after which time a trial
+account is deleted (including all its content). Therefore, you should store all your important content somewhere
+else, e.g. in a Github repository.
 
 ### Connecting the SAP Cloud Platform to the SAP NetWeaver AS ABAP
 
@@ -49,7 +54,7 @@ dropdown list. If a property is missing simply enter the property manually.
 |WebIDESystem  | The system ID of the SAP NetWeaver AS ABAP. This is NPL for the SAP NetWeaver developer trial. |
 |WebIDEUsage   | odata_abap |
 |sap-platform  | ABAP |
-|sap-client    | The client number of the SAP NetWeaver AS ABAP. This is 001 the SAP NetWeaver deverloper trial. |
+|sap-client    | The client number of the SAP NetWeaver AS ABAP. This is 001 the SAP NetWeaver developer trial. |
 |HTML5.DynamicDestination | true|
 
 Click finish to create the destination.
@@ -59,10 +64,31 @@ Click finish to create the destination.
 ## Create the Sales Order Monitor
 
 The next step is to create the first version of the Sales Order Monitor. The Sales Order Monitor
-is based on the SAP Fiori Elements. To create Fiori Elements based applications the SAP WebIDE offers a range
-of template. In this chapter a first version of the Sales Order Monitor is generated based on
+is based on the SAP Fiori Elements. To create Fiori Elements based applications the SAP Business
+Application Studio offers a range
+of templates. In this chapter a first version of the Sales Order Monitor is generated based on
 one of these templates. After this, annotations in the CDS views are used do adjust the appearance and behavior
-of the generated applications.
+of the generated application.
+
+<img src="../img/business_app_studio_00.png" width="60%">
+
+### Accessing the SAP Business Application Studio
+
+In order to access the SAP Business Application Studio open the SAP Cloud Platform cockpit of your trial account.
+On the main page you find a link to the Business Application Studio. Click on this link to navigate to the SAP
+Business Application Studio main page.
+
+First, you need to create a Dev Space to use. To create a new Dev Space before click on **Create Dev Space**. On
+the next screen provide a name for the dev space and select **SAP Fiori** the the application kind.
+By selecting SAP Fiori the necessary extension to create SAP Fiori Elements applications are pre-installed into
+the new Dev Space.
+
+<img src="../img/business_app_studio_10.png" width="60%">
+
+Click on **Create Dev Space** to finish the creation of the Dev Space. The creation of the Dev Space takes a few
+minutes. Once the creation is finished the status of the Dev Space changes to **running**. Now the Dev Space can be accessed by clicking on its name.
+
+<img src="../img/business_app_studio_20.png" width="60%">
 
 ### Creating an App using a Template
 
