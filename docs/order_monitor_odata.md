@@ -29,7 +29,7 @@ exposed using auto-exposure. After that, a OData service is generated using the 
 ### Auto-Exposure of an OData Service
 
 As a first step the generated consumption view is exposed using auto-exposure. To do soe only the annotation
-`@OData.publish: true` needs to be added to the consumption view (cf. the following screenshot). 
+`@OData.publish: true` needs to be added to the consumption view (cf. the following screenshot).
 After saving and activating the view a little warning icon is shown next to the annotation.
 
 <img src="../img/expose_odata_10.png" width="50%">
@@ -46,13 +46,13 @@ already exposed. Service are added using the **Add Service** button.
 
 In the next screen the available service can be filtered by providing the system alias (LOCAL in our example) and the
 technical name of the service. Note, that the technical name of the service is the name of the consumption view
-followed by the suffix _CDS. As service can be exposed by clicking the **Add Selected Services** button. 
+followed by the suffix _CDS. As service can be exposed by clicking the **Add Selected Services** button.
 
 <img src="../img/expose_odata_40.png" width="50%">
 
 After the service is exposed successfully the warning message disappears and only a little icon is visible next to the
 `@OData.publish: true` annotation. The tooltip for this icon contains a link to test the generated OData service. Clicking
-on this link open the OData service in a browser using a simple debug interface. 
+on this link open the OData service in a browser using a simple debug interface.
 
 <img src="../img/expose_odata_50.png" width="50%">
 
@@ -60,7 +60,7 @@ on this link open the OData service in a browser using a simple debug interface.
 
 Expose the sales order data from the consumption view generated in the previous chapter using
 the auto exposure feature. Whe asked of a package to be save the generated artifacts use the package you have
-been using for the whole exercises. 
+been using for the whole exercises.
 
 After the service is exposed use different OData queries to analyse the exposed data.
 
@@ -101,7 +101,7 @@ The result of the generation steps are four new classes in the selected package.
 | ZCL_Z_ERP_IMPL_WS19_MPC_EXT | Model provider extension class. This class can be used to modify the exposed metadata. |
 
 Finally, the service also needs to be exposed. This can either be done using the `/IWFND/MAINT_SERVICE` or using the shortcut from within the
-service builder. 
+service builder.
 
 <img src="../img/expose_odata_100.png" width="50%">
 
