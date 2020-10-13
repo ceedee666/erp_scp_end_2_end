@@ -400,5 +400,5 @@ Make sure actions work as expected.
 
 ## Navigation
 
-- Next chapter: [RQK Overview](docs/rqk_overview.md)
+- Next chapter: [RQK Overview](../docs/rqk_overview.md)
 - Previous chapter: [Extending the Sales Order Monitor using Annotations](../docs/order_monitor_fe_2.md)
