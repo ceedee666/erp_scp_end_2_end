@@ -149,5 +149,5 @@ Implement the following changes in the Sales Order Monitor:
 
 ## Navigation
 
-- Next chapter: [Extending the Sales Order BOPF object](docs/order_monitor_bopf.md)
-- Previous chapter: [Fiori Elements based Sales Order Monitor](docs/order_monitor_fe_1.md)
+- Next chapter: [Extending the Sales Order BOPF object](../docs/order_monitor_bopf.md)
+- Previous chapter: [Fiori Elements based Sales Order Monitor](../docs/order_monitor_fe_1.md)
