@@ -23,10 +23,6 @@ model is extended in two directions:
 The following figure gives am overview of the components involved in the implemented scenario.
 ![Scenario overview](../img/solution_overview.png)
 
-## Sales Order Monitor (SOM)
-
-## Red Qaultrics Killer (RQK)
-
 ## Navigation
 
 - Next chapter: [Exploring the EPM](../docs/exploring_epm.md)
