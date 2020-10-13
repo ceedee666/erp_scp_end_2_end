@@ -84,14 +84,15 @@ The following links point to the official documentation as well as useful blogs 
 * [SAP Cloud Platform Trial](https://www.sap.com/cmp/td/sap-cloud-platform-trial.html)
 * [SAP Cloud Platform Cockpit](https://cockpit.hanatrial.ondemand.com/cockpit/#/home/trial)
 
-#### Documentation 
+#### Documentation
 
-* [SAP WebIDE Resources](https://developers.sap.com/topics/sap-webide.html#details)
+* [Set Up SAP Business Application Studio for Development](https://developers.sap.com/tutorials/appstudio-onboarding.html)
 
 ### SAP Cloud Application Programming (CAP) Model documentation
 
 * [Official CAP Docu](https://cap.cloud.sap/docs/)
 * [Blog Series on SAP CAP](https://blogs.sap.com/2019/10/19/build-an-english-premier-league-app-with-sap-cloud-application-programming-model-part-1-the-story-begins/)
+* [CAP Learning Journey](https://help.sap.com/doc/221f8f84afef43d29ad37ef2af0c4adf/HP_2.0/en-US/972e35035f404685ba6bb54b03f7c167.html)
 
 ### SAP UI5 documentation
 
