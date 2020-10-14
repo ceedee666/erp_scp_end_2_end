@@ -17,7 +17,7 @@ service is started.
 1. This workflow creates an open review in the RQK database
 1. The workflow sends an email to the contact person of the order asking for a review of the order process.
 1. One the review is completed business rules modeled using the SAP Cloud Platform Business Rules service are used
-to determine the next process steps. If a bad review is provided a task to contact the customer is created in thedl
+to determine the next process steps. If a bad review is provided a task to contact the customer is created in the
 workflow inbox of the user.
 
 ## Navigation
