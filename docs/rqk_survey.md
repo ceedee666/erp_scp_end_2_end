@@ -34,7 +34,7 @@ In order to use the CDS command line tools a terminal window is necessary. To op
 in the SAP Business Application Studio right click on the empty projects pane and select
 **Open in Terminal**.
 
-![Open new terminal]("../img/rqk_cap_010.png)
+![Open new terminal](../img/rqk_cap_010.png)
 
 This opens a new terminal window in the projects folder of the current dev space. In order to initialize a 
 CAP project execute the following command in the terminal:
@@ -62,6 +62,8 @@ The result is an empty CAP project is generated inside the ```rqk``` folder. The
 * the (empty) ```app```, ```db``` and ```srv``` folder
 * the ```package.json``` file
 * the ```README.MD``` file
+
+![Initial project structure](../img/rqk_cap_020.png)
 
 ## Developing the database model
 
