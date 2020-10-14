@@ -11,11 +11,16 @@ The development of the RQK application consists of the following steps:
 * Developing services based on the database model
 * Developing the UI
 
-
 ## Prerequisites
 
 Different development environments (cf. <https://cap.cloud.sap/docs/get-started/tools>) can be used to develop
-applications in the SAP Cloud Application Programming Model. In this tutorial the SAP Business Application Studio is used.
+applications in the SAP Cloud Application Programming Model. In this tutorial the SAP Business Application Studio
+is used. Therefore, a new dev space for the SAP Business Application Studio needs to be created.
+The new dev space should be of type **SAP Cloud Business Application**. In addition to the standard extensions
+also the **Workflow Management** extension needs to be activated for this dev space.
+
+Note that in the SAP Cloud Platform trail account there is a limitation regarding the dev spaces:
+> You are allowed a maximum number of 2 dev spaces, and only 1 can be run at a time.
 
 ## Initializing the CAP project
 
