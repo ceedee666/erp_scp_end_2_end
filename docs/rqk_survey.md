@@ -65,14 +65,114 @@ The result is an empty CAP project is generated inside the ```rqk``` folder. The
 
 ![Initial project structure](../img/rqk_cap_020.png)
 
+To finish the initial setup of the project the required node.js modules need to be installed.
+To install the required modules execute ```npm install``` in the project directory. Note, that
+it is necessary that current directory of the terminal is the root folder of the
+RQK project. This can be achieved by either navigating to the folder (e.g. using ```cd rqk```)
+or by right clicking on the folder an opening a new terminal window there.
+
 ## Developing the database model
 
-* DB model
-* model service
-* CSV data
-* in memory to real DB
+After the empty project has been created the next step is to define the data model. In CAP data models are
+defined using [Core Data Services (CDS)](https://cap.cloud.sap/docs/cds/). Note, that the CAP variant of CDS is
+similar to the ABAP variant of CDS. However, certain differences regarding the available features
+and the syntax exist. The documentation of the CAP CDS variant is available
+[here](https://cap.cloud.sap/docs/cds/).
+
+In order to generate the data model for the RQK application create a file with the name ```schema.cds``` in the
+```db```folder of the project. Add the following CDS code to the ```schema.cds``file.
+
+```json
+using { cuid, managed } from '@sap/cds/common';
+
+namespace de.fhaachen.rqk;
+
+entity Reviews : cuid, managed {
+  rating : Integer;
+  text   : String(500);
+  status : Integer enum {
+              initial = 0;
+              submitted = 1;
+              completed = 2;
+           };
+  orderNumber : Integer;
+  orderDate : Date;
+}
+```
+
+The CDS code above defines one entity named ```Review```. This entity consisting of the following elements:
+
+* the ```cuid``` aspect (cf. <https://cap.cloud.sap/docs/cds/common#aspect-cuid>)
+* the ```managed``` aspect (cf. <https://cap.cloud.sap/docs/cds/common#aspect-managed>)
+* a ```rating``` of type ```Integer```
+* a ```text``` of type ```String``` and a maximum length of 500 chars
+* a ```status``` of type ```Integer``` and a possible list of values defined as an enumeration
+(cf. <https://cap.cloud.sap/docs/cds/cdl#enums>)
+* a ```orderNumber``` of type ```Integer```
+* a ```orderDate``` of type ```Date```
+
+It is important to understand, that the CDS is a declarative description of a data model. Using the cds command line
+tools of CAP this declarative description can be compiled into different data models.
+As an example the ```schema.cds```` file now compiled into SQL. Using the command line tools this compilation can be
+performed using the following command:
+
+```bash
+cds c db/schema.cds -2 sql
+```
+
+The result of the execution is shown below.
+
+```sql
+CREATE TABLE de_fhaachen_rqk_Reviews (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  rating INTEGER,
+  text NVARCHAR(500),
+  status INTEGER,
+  orderNumber INTEGER,
+  orderDate DATE,
+  PRIMARY KEY(ID)
+);
+```
+
+By using the ```cuid``` aspect a primary key named ```ID``` of type ```NVARCHAR(36)``` is created.
+Furthermore, the  ```managed``` aspect results in the four columns ```createdAt```,
+```createdby```,```changedAt``` and ```createdBy```. Finally also the columns for the
+other attributes like rating and status are created.
+
+Note, that the enum values are not represent in the resulting SQL. Consequently, the possible values will
+not be enforced on the database level.
+
+### Sample data in SQLite
+
+The next step is to bring the data model that has been defined in the ```schema.cds```file to life. 
+In oder to do this some sample data is needed. To add sample data to the application two steps
+are necessary:
+
+* add a folder ```data``` to the ```db``` folder
+* add a file named ```de.fhaachen.rqk-Reviews.cds``` to this folder
+* add the following lines to this CSV file
+
+```CSV
+ID, orderNumber, orderDate, rating, text, status
+66465728-7a9e-4231-9e57-74f878f8b877,00000001,2020-01-01, , ,0
+278acf9a-a7ca-42d7-8033-ba33193133ed,00000002,2020-01-01, , ,0
+428bd000-a76d-4c23-9707-c5d65fc3bc56,00000042,2020-01-01,6,War alles ganz OK, 1
+c612b7c3-6cca-47ba-be5e-227e2a88324c,12345000,2020-01-01,9, Super, 2
+```
+
+The CSV file defines four Review entities together with some sample data. The naming convention 
+used for the sample data files is the namespace of the entity followed by a dash and the entity name
+(```<namespace>-<entity name>.csv```).
+
+In order to see the CAP in action on
 
 ## Developing services based on the database model
+
+** switching to a real db
 
 ## Developing the UI
 
