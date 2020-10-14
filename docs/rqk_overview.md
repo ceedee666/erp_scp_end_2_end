@@ -22,5 +22,5 @@ workflow inbox of the user.
 
 ## Navigation
 
-- Next chapter: [RQK Survey Application](../docs/rqk_survey.md)
-- Previous chapter: [Extending the Sales Order BOPF Object](../docs/order_monitor_bopf.md)
+* Next chapter: [RQK Survey Application](../docs/rqk_survey.md)
+* Previous chapter: [Extending the Sales Order BOPF Object](../docs/order_monitor_bopf.md)
