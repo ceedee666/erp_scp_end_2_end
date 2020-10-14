@@ -158,17 +158,71 @@ are necessary:
 
 ```CSV
 ID, orderNumber, orderDate, rating, text, status
-66465728-7a9e-4231-9e57-74f878f8b877,00000001,2020-01-01, , ,0
-278acf9a-a7ca-42d7-8033-ba33193133ed,00000002,2020-01-01, , ,0
+66465728-7a9e-4231-9e57-74f878f8b877,00000001,2020-01-01,0, ,0
+278acf9a-a7ca-42d7-8033-ba33193133ed,00000002,2020-01-01,0, ,0
 428bd000-a76d-4c23-9707-c5d65fc3bc56,00000042,2020-01-01,6,War alles ganz OK, 1
 c612b7c3-6cca-47ba-be5e-227e2a88324c,12345000,2020-01-01,9, Super, 2
 ```
 
-The CSV file defines four Review entities together with some sample data. The naming convention 
+The CSV file defines four Review entities together with some sample data. The naming convention
 used for the sample data files is the namespace of the entity followed by a dash and the entity name
 (```<namespace>-<entity name>.csv```).
 
-In order to see the CAP in action on
+The next step is to deploy the defined data model into an SQLite in memory data base. This is achieved
+by executing
+
+```bash
+cds watch
+```
+
+in the terminal. The ```cds watch``` command starts a web server in order to enable testing of the
+application without the need to deploy to the SAP Cloud Platform first. Once the web server
+hast stared a pop up opens. By clicking on the **Open in New Tab** link a web site opens that shows all
+available service.
+
+![Available Service](../img/rqk_cap_040.png)
+
+Currently no services are available in the project. To add a first to the project create a file
+named ```manage-service.cds``` to the ```srv``` folder. Add the following content to this file:
+
+```json
+using { de.fhaachen.rqk as rqk } from '../db/schema';
+service ManageService { //@(requires:'authenticated-user') {
+  entity Reviews as projection on rqk.Reviews;
+}
+```
+
+This CDS defines a new service named **ManageService** that exposes the Review entity fo the data model.
+Once the file is saved ```cds watch```notices the change and compiles the ne file. As a result
+the terminal should contain log messages similar to the one below.
+
+```bash
+[cds] - using bindings from: { registry: '~/.cds-services.json' }
+[cds] - connect to db > sqlite { database: ':memory:' }
+/> successfully deployed to sqlite in-memory db
+
+[cds] - connect to messaging > local-messaging {}
+[cds] - serving ManageService { at: '/manage' }
+
+[cds] - launched in: 1000.760ms
+[cds] - server listening on { url: 'http://localhost:4004' }
+```
+
+These log messages contain the following information:
+
+1. An SQLite in memory database is used (```deployed to sqlite in-memory```)
+1. The ManageService is available at /manage (```[cds] - serving ManageService { at: '/manage' }```)
+
+Reloding the **Welcome to cds.service*** web site should now show the review entity.
+
+![The Review Service](../img/rqk_cap_040.png).
+
+Clicking on the link **Review** serves the sample data from the CSV file using OData v4. 
+By only defining a data model and a service CAP already provides the full OData v4 functionality.
+
+### Exercise 1
+Try different OData features with the service. It is possible to change Reviews or to create new Reviews? 
+If yes, how? What happens when the ```cds watch``` command is restarted to the data?
 
 ## Developing services based on the database model
 
