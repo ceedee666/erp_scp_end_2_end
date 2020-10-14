@@ -187,7 +187,7 @@ named ```manage-service.cds``` to the ```srv``` folder. Add the following conten
 
 ```json
 using { de.fhaachen.rqk as rqk } from '../db/schema';
-service ManageService { //@(requires:'authenticated-user') {
+service ManageService { 
   entity Reviews as projection on rqk.Reviews;
 }
 ```
