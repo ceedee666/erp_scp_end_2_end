@@ -24,6 +24,45 @@ Note that in the SAP Cloud Platform trail account there is a limitation regardin
 
 ## Initializing the CAP project
 
+Although the SAP Business Application Studio is used as a development environment, the
+[CDS command line tools](https://cap.cloud.sap/docs/get-started/) are used to
+initialize the CAP project. While the SAP Business Application Studio also provides
+GUI based generators using the CDS command line tools is the most common approach. Being
+used to the CDS command line tools also simplifies switching to different development environments later.
+
+In order to use the CDS command line tools a terminal window is necessary. To open a new terminal window
+in the SAP Business Application Studio right click on the empty projects pane and select
+**Open in Terminal**.
+
+![Open new terminal]("../img/rqk_cap_010.png)
+
+This opens a new terminal window in the projects folder of the current dev space. In order to initialize a 
+CAP project execute the following command in the terminal:
+
+```bash
+cds
+```
+
+This command prints out some general information regarding the CDS command line tools. Most importantly,
+an overview of the available commands is given. Next execute 
+
+```bash
+cds help init
+```
+
+to get a list of the different available options for the ```cds init``` command. To initialize the
+RQK application execute the following command.
+
+```bash
+cds i rqk
+```
+
+The result is an empty CAP project is generated inside the ```rqk``` folder. The empty projects consists of:
+
+* the (empty) ```app```, ```db``` and ```srv``` folder
+* the ```package.json``` file
+* the ```README.MD``` file
+
 ## Developing the database model
 
 * DB model
