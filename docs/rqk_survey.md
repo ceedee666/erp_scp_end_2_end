@@ -254,6 +254,35 @@ command performs the following steps
 > 1. Drops existing tables and views, and re-creates them according the CDS model.
 > 1. Deploys CSV files with initial data.
 
+### Exercise 2
+
+Execute the ```cds deploy --to sqlite``` in your project. Restart the preview of the application
+and try adding reviews using the service. What happens to the data now when the application restarts?
+
+The result of running the ```cds deploy --to sqlite``` can bee seen in several areas of the project.
+
+1. A file named ```sqlite.db``` is created in the base directory of the project.
+1. The requirement of the SQLite database is added to the ```package.json``` file.
+
+The next step is to analyse the created database. To do this open the SQL tools and add a new connection.
+
+![SQL Tools](../img/rqk_cap_060.png).
+
+Select SQlite as the connection type. In the following dialog provide a name for the connection and the path
+to the ```sqlite.db``` file. If your project folder is named ```rqk``` the path to the file is
+```rqk/sqlite.db```. Finish the creation of the connection and connect to the database.
+
+Once the connection of to the database is established the created database artifacts can be viewed.
+Note, that as a result of the deployment of the CDS file a database table and a database view have been
+created.
+![DB Artifacts](../img/rqk_cap_070.png).
+
+### Exercise 3
+
+Use the Database Tools Data Preview to make sure the records created in the previous exercise have
+indeed been added to the database.
+![DB Preview](../img/rqk_cap_080.png).
+
 
 ## Developing the UI
 
