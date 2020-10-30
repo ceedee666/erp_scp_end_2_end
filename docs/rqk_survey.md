@@ -148,8 +148,8 @@ not be enforced on the database level.
 
 ### Sample data in SQLite
 
-The next step is to bring the data model that has been defined in the ```schema.cds```file to life. 
-In oder to do this some sample data is needed. To add sample data to the application two steps
+The next step is to bring the data model that has been defined in the ```schema.cds``` file to life.
+In order to do this some sample data is needed. To add sample data to the application two steps
 are necessary:
 
 * add a folder ```data``` to the ```db``` folder
@@ -185,7 +185,7 @@ available service.
 Currently no services are available in the project. To add a first to the project create a file
 named ```manage-service.cds``` to the ```srv``` folder. Add the following content to this file:
 
-```json
+```JSON
 using { de.fhaachen.rqk as rqk } from '../db/schema';
 service ManageService { 
   entity Reviews as projection on rqk.Reviews;
@@ -193,10 +193,10 @@ service ManageService {
 ```
 
 This CDS defines a new service named **ManageService** that exposes the Review entity fo the data model.
-Once the file is saved ```cds watch```notices the change and compiles the ne file. As a result
+Once the file is saved ```cds watch``` notices the change and compiles the ne file. As a result
 the terminal should contain log messages similar to the one below.
 
-```bash
+```Shell
 [cds] - using bindings from: { registry: '~/.cds-services.json' }
 [cds] - connect to db > sqlite { database: ':memory:' }
 /> successfully deployed to sqlite in-memory db
@@ -213,20 +213,47 @@ These log messages contain the following information:
 1. An SQLite in memory database is used (```deployed to sqlite in-memory```)
 1. The ManageService is available at /manage (```[cds] - serving ManageService { at: '/manage' }```)
 
-Reloding the **Welcome to cds.service*** web site should now show the review entity.
+Reloading the **Welcome to cds.service*** web site should now show the review entity.
 
-![The Review Service](../img/rqk_cap_040.png).
+![The Review Service](../img/rqk_cap_050.png).
 
-Clicking on the link **Review** serves the sample data from the CSV file using OData v4. 
+Clicking on the link **Review** serves the sample data from the CSV file using OData v4.
 By only defining a data model and a service CAP already provides the full OData v4 functionality.
 
 ### Exercise 1
-Try different OData features with the service. It is possible to change Reviews or to create new Reviews? 
+
+Try different OData features with the service. It is possible to change Reviews or to create new Reviews?
 If yes, how? What happens when the ```cds watch``` command is restarted to the data?
 
-## Developing services based on the database model
+If you need a reminder on the different OData features visit
+[Take a Deep Dive into OData](https://developers.sap.com/mission.scp-3-odata.html) again. Note, if
+you try to access the service using e.g. Postman you need to copy the header cookies from the request in the
+browser.
 
-** switching to a real db
+## Persisting Data in a Database
+
+One of the limitations you might have notices in the previous exercise is, that changes to the data are
+lost when the preview of the application restarts (i.e. ```cds watch``` restarts the application). The reason is
+that the application is currently running using an in-memory database.
+
+The next step is to add a persistent database to our application. The SAP Cloud Platform in conjunction
+with the CAP currently offers [two database variants](https://cap.cloud.sap/docs/guides/databases),
+SAP HANA and SQLite. As this application does not require any of the advanced data base
+features of SAP HANA, SQlite is used.
+
+Adding SQLite support to the project is quite simple. It only requires executing the following command:
+
+```Shell
+cds deploy --to sqlite
+```
+
+According to the [CAP documentation](https://cap.cloud.sap/docs/guides/databases) this
+command performs the following steps
+
+> 1. Creates an SQLite database file in your project.
+> 1. Drops existing tables and views, and re-creates them according the CDS model.
+> 1. Deploys CSV files with initial data.
+
 
 ## Developing the UI
 
