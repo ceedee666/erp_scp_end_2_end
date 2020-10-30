@@ -49,6 +49,9 @@ Nevertheless, a possible solution for each of the exercises is available as part
     1. [Extending the Sales Order BOPF object](docs/order_monitor_bopf.md)
 1. Red Qualtrics Killer
     1. [RQK Overview](docs/rqk_overview.md)
+    1. [RQK Survey Application](docs/rqk_survey.md)
+    1. [RQK Workflow](docs/rqk_workflow.md)
+1. [Summary](docs/summary.md)
 
 ## Open Issues
 
