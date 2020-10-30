@@ -80,9 +80,9 @@ and the syntax exist. The documentation of the CAP CDS variant is available
 [here](https://cap.cloud.sap/docs/cds/).
 
 In order to generate the data model for the RQK application create a file with the name ```schema.cds``` in the
-```db```folder of the project. Add the following CDS code to the ```schema.cds``file.
+```db```folder of the project. Add the following CDS code to the ```schema.cds``` file.
 
-```json
+```JSON
 using { cuid, managed } from '@sap/cds/common';
 
 namespace de.fhaachen.rqk;
