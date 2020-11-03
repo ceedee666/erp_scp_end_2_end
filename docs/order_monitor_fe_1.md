@@ -528,6 +528,91 @@ Using the `@Metadata.layer` annotation a meta data extension file can be assigne
 - `#PARTNER`
 - `#CUSTOMER`.
 
+## Optional: Deploying the App to the SAP Cloud Platform
+
+So far the Sales Order Monitor has always been executed in the Fiori Launchpad Sandbox.
+The next step is to actually deploy the Sales Order Monitor to the SAP Cloud platform.
+The SAP Business Application Studio supports the deployment by already providing the
+necessary scripts. The deployment to the SAP Cloud Platform consists of the
+following steps:
+
+1. Create the required deployment artifacts
+1. Build the mtar file
+1. Deploy the mtar file to the SAP Cloud Platform
+
+In order to keep the workspace in the SAP Business Application Studio organized it is useful
+to first create a separate for to store all the necessary artifacts. While this can be done using
+the SAP Business Application Studio UI the approach using the terminal is used in this tutorial.
+Open a terminal in the projects folder of the SAP Business Application studio (using a right click
+and select "Open in Terminal"). Next execute the following commands to create a new folder and move
+the existing application to the newly created folder. Note, that in the example the application
+was located in a folder named ```po-monitor``` and moved to a folder ```po-monitor-cf```.
+
+```Shell
+mkdir po-monitor-cf
+mv po-monitor po-monitor-cf
+```
+
+The following figure shows the workspace after moving the project folder. 
+
+![The Workspace after the shell commands](../img/purchase_order_monitor_110.png)
+
+After this preparation the next step is to create the required deployment artifacts. To do this
+either run the "deploy" task in the NPM Scripts section of the SAP Business Application Studio or
+by executing ```npm run deploy``` in a terminal.
+
+Once the script runs a few questions need to be answered in order for the script ot generate
+the correct artifacts. Answer the questions als follows:
+
+1. Target is Cloud Foundry as the app will be deployed to the SAP Cloud Platform Cloud Foundry
+environment. Use the arrow keys to select it and press enter.
+1. The artifacts should be generated in the root folder. The root folder should now point to
+the folder created earlier.
+1. Enter an ID for the Multi Target Application (MTA). The example uses ```PO-Monitor```.
+1. Enter a description for the application.
+1. Confirm the proposed version number.
+1. Confirm the proposed destination name.
+1. Choose to add a Fiori Launchpad (FPL) config
+    1. Enter a semantic object. In the example this is the PurchaseOrder.
+    1. Enter Display as action.
+    1. Enter a title for the app in the Fiori Launchpad.
+
+As the result of the script a number of artifacts are generated in the root folder. Most notably,
+a folder named ```cf``` is created. It contains the Fiori Launchpad configuration and the application
+router. Furthermore, a ```package.json``` file and a ```mta.yaml``` file ar created.
+
+Right now, these artifacts won't be analysed in detail. They contain the necessary build block to
+run the Fiori Elements application in the SAP Cloud Platform Cloud Foundry environment.
+
+In order to build the deployable mtar file execute the build script inside the new ```package.json```
+file (either using the NPM Scrips view or by executing ```npm run build``` in a terminal). The result of
+executing the script is a deployable ```archive.mtar``` file inside the ```mta_archives``` folder.
+
+The ```archive.mtar``` can be deployed to the SAP Cloud Platform. However, it is necessary to first log in
+to the Cloud Foundry environment. This can be done by either clicking on the Cloud Foundry area in the
+bottom bar of the SAP Business Application Studio (cf. following screenshot) or by executing ```cf login````
+in a terminal.
+
+![Login to CF](../img/purchase_order_monitor_310.png)
+
+Once the login is successful the targeted organization and space should be displayed in the
+bottom bar of the SAP Business Application studio.
+
+In order to deploy the application execute the deploy script (by right clicking on the
+```archive.mtar``` file and selecting "Deploy MTA File" or by executing
+```npm run deploy``` in a terminal).
+
+If everything is successful the terminal contains the URL of the application router. This URL can be used
+to invoke the deployed app.
+
+![URL of the deployed application](../img/purchase_order_monitor_320.png)
+
+Note, that accessing the application requires an authentication in the
+SAP Cloud Platform. The script generated all the necessary artifacts to integrate the application with
+the SAP Cloud Platform identity provider. Details on the authentication and authorization in the
+context of Cloud Foundry and the SAP Cloud platform can be found in this
+[blog series](https://blogs.sap.com/2020/09/01/securing-applications-in-a-multicloud-environment/)
+
 ## Navigation
 
 - Next chapter: [Extending the Sales Order Monitor using Annotations](../docs/order_monitor_fe_2.md)

@@ -238,8 +238,8 @@ that the application is currently running using an in-memory database.
 
 The next step is to add a persistent database to our application. The SAP Cloud Platform in conjunction
 with the CAP currently offers [two database variants](https://cap.cloud.sap/docs/guides/databases),
-SAP HANA and SQLite. As this application does not require any of the advanced data base
-features of SAP HANA, SQlite is used.
+SAP HANA and SQLite. SQLite is the database used for local development and testing, SAP HANA the 
+database for deploying the application.
 
 Adding SQLite support to the project is quite simple. It only requires executing the following command:
 
@@ -253,6 +253,7 @@ command performs the following steps
 > 1. Creates an SQLite database file in your project.
 > 1. Drops existing tables and views, and re-creates them according the CDS model.
 > 1. Deploys CSV files with initial data.
+
 
 ### Exercise 2
 
@@ -282,6 +283,40 @@ created.
 Use the Database Tools Data Preview to make sure the records created in the previous exercise have
 indeed been added to the database.
 ![DB Preview](../img/rqk_cap_080.png).
+
+### Enabling deployment to SAP HANA database
+
+Execute the ```cds deploy --to sqlite``` also added
+the following requirement to the ```cds``` section of the ```package.json``` file.
+
+```json
+"cds": {
+        "requires": {
+            "db": {
+                "kind": "sqlite"
+            }
+        }
+    }
+```
+
+In order to being able to deploy to a SAP HANA database later this section needs to be changed to
+
+```json
+"cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "requires": {
+            "db": {
+                "kind": "sql"
+            }
+        }
+    }
+```
+
+
+## Extending the OData Services
+
 
 
 ## Developing the UI
