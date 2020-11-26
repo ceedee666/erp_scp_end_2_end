@@ -80,7 +80,7 @@ and the syntax exist. The documentation of the CAP CDS variant is available
 [here](https://cap.cloud.sap/docs/cds/).
 
 In order to generate the data model for the RQK application create a file with the name ```schema.cds``` in the
-```db```folder of the project. Add the following CDS code to the ```schema.cds``` file.
+```db``` folder of the project. Add the following CDS code to the ```schema.cds``` file.
 
 ```javascript
 using { cuid, managed } from '@sap/cds/common';
@@ -157,7 +157,7 @@ are necessary:
 * add the following lines to this CSV file
 
 ```CSV
-ID, orderNumber, orderDate, rating, text, status
+ID,orderNumber,orderDate,rating,text,status
 66465728-7a9e-4231-9e57-74f878f8b877,00000001,2020-01-01,0, ,0
 278acf9a-a7ca-42d7-8033-ba33193133ed,00000002,2020-01-01,0, ,0
 428bd000-a76d-4c23-9707-c5d65fc3bc56,00000042,2020-01-01,6,War alles ganz OK, 1
