@@ -185,9 +185,9 @@ available service.
 Currently no services are available in the project. To add a first to the project create a file
 named ```manage-service.cds``` to the ```srv``` folder. Add the following content to this file:
 
-```JSON
+```Javascript
 using { de.fhaachen.rqk as rqk } from '../db/schema';
-service ManageService { 
+service ManageService {
   entity Reviews as projection on rqk.Reviews;
 }
 ```
@@ -253,7 +253,6 @@ command performs the following steps
 > 1. Creates an SQLite database file in your project.
 > 1. Drops existing tables and views, and re-creates them according the CDS model.
 > 1. Deploys CSV files with initial data.
-
 
 ### Exercise 2
 
@@ -323,6 +322,45 @@ has the following effect:
 
 ## Extending the OData Services
 
+As mentioned in the overview RQK consists of two SAP Fiori applications. One for the internal users
+of the application and one for the customers. To support these two applications the next step is to
+create two OData service, the ManageService and the ReviewService.
+
+The ManageService is to service that is used to implement the SAP Fiori application for the
+internal users. The main requirements for this service are:
+
+1. It should be only accessible by authenticated users.
+1. It should provide access to all the data available in the database.
+
+In contrast the ReviewService has the following requirements:
+
+1. It should allow access to single review to unauthorized users (i.e. customer).
+2. It should only provide a subset of the available data.
+3. It should provide an action to submit a review.
+
+### Adding authentication to a service
+
+In an earlier step the ManageService has already been created. The next step is now to add
+restrict the access to this service. In the SAP CAP
+[access restrictions](https://cap.cloud.sap/docs/guides/authorization) can be added
+to different CDS elements, e.g. Services and Entities. To allow only access to authenticate user
+the annotation ```@(requires: 'authenticated-user')``` is used.
+
+In order to only allow authenticated user to access the ManageService add the annotation to the
+```manage-service.cds``` file.
+
+```Javascript
+using { de.fhaachen.rqk as rqk } from '../db/schema';
+
+service ManageService @(requires: 'authenticated-user') {
+  entity Reviews as projection on rqk.Reviews;
+}
+```
+
+### Exercise 4
+
+Execute the SAP CAP application using e.g. the ```cds watch``` and check, that the service is now only
+accessible to authenticated users.
 
 
 ## Developing the UI

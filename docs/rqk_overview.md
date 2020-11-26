@@ -6,8 +6,8 @@ SAP Cloud Platform.
 
 The RQK application consists of the following SAP Cloud Platform components:
 
-* A SAP Fiori application
-* A database and services build using the [SAP Cloud Platform Programming Model](https://cap.cloud.sap/docs/)
+* Two SAP Fiori application. One for the internal users and one for the customers.
+* A database and services build using the [SAP Cloud Platform Programming Model](https://cap.cloud.sap/docs/).
 * A workflow build using different SAP Cloud Platform services.
 
 The following process is implemented using these components:
