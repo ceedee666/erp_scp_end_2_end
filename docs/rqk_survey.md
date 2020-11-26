@@ -82,7 +82,7 @@ and the syntax exist. The documentation of the CAP CDS variant is available
 In order to generate the data model for the RQK application create a file with the name ```schema.cds``` in the
 ```db```folder of the project. Add the following CDS code to the ```schema.cds``` file.
 
-```JSON
+```javascript
 using { cuid, managed } from '@sap/cds/common';
 
 namespace de.fhaachen.rqk;
@@ -238,7 +238,7 @@ that the application is currently running using an in-memory database.
 
 The next step is to add a persistent database to our application. The SAP Cloud Platform in conjunction
 with the CAP currently offers [two database variants](https://cap.cloud.sap/docs/guides/databases),
-SAP HANA and SQLite. SQLite is the database used for local development and testing, SAP HANA the 
+SAP HANA and SQLite. SQLite is the database used for local development and testing, SAP HANA the
 database for deploying the application.
 
 Adding SQLite support to the project is quite simple. It only requires executing the following command:
@@ -314,6 +314,12 @@ In order to being able to deploy to a SAP HANA database later this section needs
     }
 ```
 
+According to the [CAP documentation](https://cap.cloud.sap/docs/guides/databases) this configuration
+has the following effect:
+> ```kind:sql``` declares the requirement for an SQL database. It evaluates to sqlite in the development profile
+> (active by default), while in production it equals hana. This way you don’t need to modify this file if you
+> want to switch between the two databases. Use the --production parameter in commands like cds build to enforce
+> the production profile.
 
 ## Extending the OData Services
 
@@ -321,7 +327,6 @@ In order to being able to deploy to a SAP HANA database later this section needs
 
 ## Developing the UI
 
-* add oData V2 proxy
 * create admin list report
 * https://blog.ui5cn.com/6-creating-custom-ui5-app-in-sap-capm-7-steps-to-get-started-with-sap-capm/
 * https://www.youtube.com/watch?v=es0eAtAQPzk
