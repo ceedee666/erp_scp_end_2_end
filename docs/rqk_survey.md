@@ -273,9 +273,9 @@ to the ```sqlite.db``` file. If your project folder is named ```rqk``` the path 
 ```rqk/sqlite.db```. Finish the creation of the connection and connect to the database.
 
 Once the connection of to the database is established the created database artifacts can be viewed.
-Note, that as a result of the deployment of the CDS file a database table and a database view have been
-created.
-![DB Artifacts](../img/rqk_cap_070.png).
+Note, that as a result of the deployment of the CDS file a database table and a database view have been created.
+
+![DB Artifacts](../img/rqk_cap_070.png)
 
 ### Exercise 3
 
@@ -334,34 +334,102 @@ internal users. The main requirements for this service are:
 
 In contrast the ReviewService has the following requirements:
 
-1. It should allow access to single review to unauthorized users (i.e. customer).
+1. It should allow access to single reviews to unauthorized users (i.e. customer).
 2. It should only provide a subset of the available data.
 3. It should provide an action to submit a review.
 
 ### Adding authentication to a service
 
-In an earlier step the ManageService has already been created. The next step is now to add
+In an earlier step the ManageService has already been created. The next step is now to
 restrict the access to this service. In the SAP CAP
 [access restrictions](https://cap.cloud.sap/docs/guides/authorization) can be added
-to different CDS elements, e.g. Services and Entities. To allow only access to authenticate user
-the annotation ```@(requires: 'authenticated-user')``` is used.
+to different CDS elements, e.g. Services and Entities. To allow only authenticated users to
+access a service the annotation ```@(requires: 'authenticated-user')``` is used.
 
-In order to only allow authenticated user to access the ManageService add the annotation to the
+The access to the ManageService should only be granted to users with the role *rqk-admin*. To
+achieve this add the annotation ```@(requires: 'rqk-admin')``` to the
 ```manage-service.cds``` file.
 
 ```Javascript
 using { de.fhaachen.rqk as rqk } from '../db/schema';
 
-service ManageService @(requires: 'authenticated-user') {
+service ManageService @(requires: 'rqk-admin') {
   entity Reviews as projection on rqk.Reviews;
+}
+```
+
+In order for to test the authentication in the development environment a mock authentication mechanism is used.
+To configured this service follow the
+steps described in the [SAP CAP documentation](https://cap.cloud.sap/docs/node.js/authentication#mocked).
+
+To being able to check that only users bearing the correct role are able to access the service create two
+mock users in the ```package.json``` fils as shown below.
+
+```Javascript
+"requires": {
+  ...
+  "auth": {
+      "strategy": "mock",
+      "users": {
+          "demouser": {
+              "password": "passwd",
+              "roles": [
+                  "rqk-admin"
+              ]
+          },
+          "demouser2": {
+              "password": "passwd",
+              "roles": []
+          }
+      }
+  }
 }
 ```
 
 ### Exercise 4
 
-Execute the SAP CAP application using e.g. the ```cds watch``` and check, that the service is now only
-accessible to authenticated users.
+Execute the SAP CAP application using e.g. the ```cds watch``` and check (e.g. using Postman),
+that the service is now only accessible by authenticated users bearing the correct user role.
+Using the mock users shown above accessing the service should be allowed for user *demouser*
+and forbidden for the user *demouser2*
 
+### Creating the ReviewService
+
+The next step is to develop the Review Service. In order to meet the requirements of the service the
+following functionality are implemented using different features of the framework:
+
+* The attributes ```reatedAt```, ```createdBy```, ```modifiedAt``` and ```modifiedBy``` are note exported
+by the ReviewService
+* The service is restricted to only allow read operation for entity. The update and delete operations are disabled.
+* An action ```submitReview``` is added to allow submitting of the review once a customer finished it.
+
+To create the ReviewService add a new file to the ```srv``` directory. In the example review-service.cds is used
+as the file name. The following snippets exports the Review entity and exclude the attributes
+```reatedAt```, ```createdBy```, ```modifiedAt``` and ```modifiedBy```
+using a ```excluding``` statement. Furthermore, due to the ```@readonly```
+[annotation](https://cap.cloud.sap/docs/guides/authorization#restricting-events-with-readonly-and-insertonly)
+only read operations are allowed for the entity
+
+```Javascript
+using { de.fhaachen.rqk as rqk } from '../db/schema';
+
+service ReviewService {
+    @readonly entity Reviews as projection on rqk.Reviews
+      excluding { createdBy, createdAt, modifiedBy, modifiedAt };
+}
+```
+
+### Exercise 5
+
+Execute the SAP CAP application using e.g. the ```cds watch``` and check the following functionality:
+
+* The ReviewService is accessible by anonymous users
+* Only the attributes, that have not been excluded, are exposed
+* It is not possible to create, delete or modify entities using the ReviewService.
+
+
+. Finally, a action to submit the review is added
+by the ```action``` statement.  
 
 ## Developing the UI
 
