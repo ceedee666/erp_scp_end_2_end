@@ -386,16 +386,21 @@ mock users in the ```package.json``` fils as shown below.
 }
 ```
 
-### Exercise 4
+#### Exercise 4
 
 Execute the SAP CAP application using e.g. the ```cds watch``` and check (e.g. using Postman),
 that the service is now only accessible by authenticated users bearing the correct user role.
 Using the mock users shown above accessing the service should be allowed for user *demouser*
 and forbidden for the user *demouser2*
 
+#### Exercise 5 (optional)
+
+Configure token base authentication for the production environment as described
+[here](https://cap.cloud.sap/docs/node.js/authentication#jwt).
+
 ### Creating the ReviewService
 
-The next step is to develop the Review Service. In order to meet the requirements of the service the
+The next step is to develop the ReviewService. In order to meet the requirements of the service the
 following functionality are implemented using different features of the framework:
 
 * The attributes ```reatedAt```, ```createdBy```, ```modifiedAt``` and ```modifiedBy``` are note exported
@@ -419,7 +424,7 @@ service ReviewService {
 }
 ```
 
-### Exercise 5
+#### Exercise 6
 
 Execute the SAP CAP application using e.g. the ```cds watch``` and check the following functionality:
 
@@ -427,9 +432,77 @@ Execute the SAP CAP application using e.g. the ```cds watch``` and check the fol
 * Only the attributes, that have not been excluded, are exposed
 * It is not possible to create, delete or modify entities using the ReviewService.
 
+The final step to complete the ReviewService is to add an action that allows
+the user to complete a review. To create an action add the following ```action``` statement to the
+ReviewService.
 
-. Finally, a action to submit the review is added
-by the ```action``` statement.  
+```Javascript
+service ReviewService {
+    @readonly entity Reviews as projection on rqk.Reviews
+      excluding { createdBy, createdAt, modifiedBy, modifiedAt };
+
+    action submitReview(reviewID: Reviews:ID, rating: Integer, review: String(500));
+}
+```
+
+#### Exercise 7
+
+Try to invoke the ```submitReview``` action of the ReviewService using Postman. Is it possible?
+
+So far it is not possible to invoke the ```submitReview``` action as no function to handle
+the event has been defined. In order to add a function to handle the ```submitReview``` action
+create a Javascript file next to the CDS file of the review service. If, for example, the CDS file is called
+```review-service.cds```the new file should be called ```review-service.js```.
+
+```Javascript
+const cds = require('@sap/cds')
+
+module.exports = cds.service.impl (function (){
+  this.on ('submitReview', async req => {
+    const {reviewID,rating, review} = req.data
+    const {Reviews} = cds.entities
+    const n = await UPDATE (Reviews, reviewID)
+        .set({
+            rating: rating,
+            text: review,
+            status: 1
+        })
+        .where({
+            status: {'=': 0}
+        })
+    n > 0 || req.error (409,`Review ${reviewID} could not be updated.`)
+  })
+})
+```
+
+#### Exercise 8
+
+Try to invoke the ```submitReview``` action of the ReviewService using Postman again.
+Try to submit a review for a Review entity with a status of 1 or 2. What happens now?
+
+To finalize the service implementation add tow more handlers tro ensure that only single reviews with
+the status 0 can be read using the ReviewService.
+
+```Javascript
+const cds = require('@sap/cds')
+
+module.exports = cds.service.impl (function (){
+  this.on ('submitReview', async req => {
+    ...
+  }),
+  
+  this.before ('READ', 'Reviews', req => {
+    const [ID] = req.params
+    if (ID === undefined) req.error(400, 'A reviewID needs to be provided.')
+  }),
+
+  this.after ('READ', 'Reviews', (reviews, req) => {
+    reviews.forEach(review => {
+        if(review.status > 0) req.error(400, `The review ${review.ID} has already been submitted.`)
+    })
+  })
+})
+```
 
 ## Developing the UI
 
